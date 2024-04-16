@@ -178,7 +178,7 @@ int selectSurvivor(Survivor* heroes[], int numSurvivors)
         cout << "Choose your Survivor:" << endl;
         for (int i = 0; i < numSurvivors; ++i) 
         {
-            cout << i << ": " << heroes[i]->getFirstName() << endl;
+            cout << heroes[i]->getFirstName() << endl;
         }
         
         cout << "Enter the number of your choice: ";
@@ -203,7 +203,7 @@ int selectSurvivorVillain(Survivor* villain[], int numSurvivors)
         cout << "Choose your Survivor:" << endl;
         for (int i = 0; i < numSurvivors; ++i) 
         {
-            cout << i << ": " << villain[i]->getFirstName() << endl;
+            cout << villain[i]->getFirstName() << endl;
         }
         
         cout << "Enter the number of your choice: ";
@@ -295,7 +295,7 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 					D_actions++;
 				}
 				//NETURAL RESULT
-				if(al_result<74 && al_result>15)
+				if(al_result<=74 && al_result>15)
 				{
 					ifstream inputFile("Heroes_Alliance.csv");
 
@@ -330,9 +330,38 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 					cout << "You have failed to create an alliance with " << heroes[al_attempt]->getFirstName() << "." << endl;
 					D_actions++;
 				}
-				//NEGATIVE RESULT
+				//NEGATIVE RESULT +40
 				if(al_result<=15)
 				{
+						ifstream inputFile("Heroes_Alliance.csv");
+
+				// Check if the file was opened successfully
+						if (!inputFile) 
+						{
+							cout << "Failed to open the file." << endl;
+							return 1;
+								}
+
+					// Skip lines until the desired line
+						int targetLine = al_attempt+40; // Change this to the line number you want to read
+						string line;
+								
+						int line_count=0;
+					// Read the desired line
+								while(getline(inputFile, line)) 
+								{
+									
+									
+									if(line_count==targetLine)
+									{
+									cout << line << endl;
+									}
+									line_count++;
+								}
+								 
+
+								// Close the file
+								inputFile.close();
 					cout <<"You have become enemies with " << heroes[al_attempt]->getFirstName() << "." << endl;
 				}
 				cout << " " << endl;
@@ -407,9 +436,46 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 					
 					D_actions++;
 					}
-
+					//NEUTRAL RESULT
+				if(trust_result<=74 && trust_result>15)
 				{
 					ifstream inputFile("Heroes_Alliance.csv");
+
+				// Check if the file was opened successfully
+						if (!inputFile) 
+						{
+							cout << "Failed to open the file." << endl;
+							return 1;
+								}
+
+					// Skip lines until the desired line
+						int targetLine = trust_attempt+50; // Change this to the line number you want to read
+						string line;
+								
+						int line_count=0;
+					// Read the desired line
+								while(getline(inputFile, line)) 
+								{
+									
+									
+									if(line_count==targetLine)
+									{
+									cout << line << endl;
+									}
+									line_count++;
+								}
+								 
+
+								// Close the file
+								inputFile.close();
+					cout << " " << endl;
+					cout << "You have failed to build trust with " << heroes[trust_attempt]->getFirstName() << "." << endl;
+					D_actions++;
+				}
+									//NEGATVIE RESULT trust_attempt 
+					if(trust_result>15)
+					{
+							ifstream inputFile("Heroes_Alliance.csv");
 
 				// Check if the file was opened successfully
 						if (!inputFile) 
@@ -438,13 +504,6 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 
 								// Close the file
 								inputFile.close();
-					cout << " " << endl;
-					cout << "You have failed to build trust with " << heroes[trust_attempt]->getFirstName() << "." << endl;
-					D_actions++;
-				}
-									//NEUTRAL RESULT
-					if(trust_result<74 && trust_result>15)
-					{
 					
 						cout <<"You have lost trust with " << heroes[trust_attempt]->getFirstName() << "." << endl;
 					}
@@ -462,12 +521,12 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 				
 			}
 			//NEUTRAL
-			if(do_nothing_result<75 && do_nothing_result>15)
+			if(do_nothing_result<=75 && do_nothing_result>15)
 			{
 				
 			}
 			//NEGATIVE
-			if(do_nothing_result<15)
+			if(do_nothing_result<=15)
 			{
 				
 			}
@@ -534,7 +593,7 @@ int day_actions_villain(Survivor* villains[], int number_survivors_per_tribe, in
 									if(line_count==targetLine)
 									{
 									cout << line << endl;
-									cout << " test: " << endl;
+									
 									}
 									line_count++;
 								}
@@ -574,7 +633,7 @@ int day_actions_villain(Survivor* villains[], int number_survivors_per_tribe, in
 									if(line_count==targetLine)
 									{
 									cout << line << endl;
-									cout << " test: " << endl;
+								
 									}
 									line_count++;
 								}
@@ -589,6 +648,38 @@ int day_actions_villain(Survivor* villains[], int number_survivors_per_tribe, in
 				//NEGATIVE RESULT
 				if(al_result<=15)
 				{
+					ifstream inputFile("Villians_Alliance.csv");
+
+				// Check if the file was opened successfully
+						if (!inputFile) 
+						{
+							cout << "Failed to open the file." << endl;
+							return 1;
+								}
+
+					// Skip lines until the desired line
+						int targetLine = al_attempt+30; // Change this to the line number you want to read
+						string line;
+								
+						int line_count=0;
+					// Read the desired line
+								while(getline(inputFile, line)) 
+								{
+									
+									
+									if(line_count==targetLine)
+									{
+									cout << line << endl;
+								
+									}
+									line_count++;
+								}
+								 
+
+								// Close the file
+								inputFile.close();
+					cout << " " << endl;
+					D_actions++;
 					cout <<"You have become enemies with " << villains[al_attempt-10]->getFirstName() << "." << endl;
 				}
 				cout << " " << endl;
@@ -677,7 +768,7 @@ int day_actions_villain(Survivor* villains[], int number_survivors_per_tribe, in
 								}
 
 					// Skip lines until the desired line
-						int targetLine = trust_attempt+10; // Change this to the line number you want to read
+						int targetLine = trust_attempt+40; // Change this to the line number you want to read
 						string line;
 								
 						int line_count=0;
@@ -704,6 +795,38 @@ int day_actions_villain(Survivor* villains[], int number_survivors_per_tribe, in
 				if(trust_result<=15)
 				{
 					
+					ifstream inputFile("Villians_Alliance.csv");
+
+				// Check if the file was opened successfully
+						if (!inputFile) 
+						{
+							cout << "Failed to open the file." << endl;
+							return 1;
+								}
+
+					// Skip lines until the desired line
+						int targetLine = trust_attempt+10; // Change this to the line number you want to read
+						string line;
+								
+						int line_count=0;
+					// Read the desired line
+								while(getline(inputFile, line)) 
+								{
+									
+									
+									if(line_count==targetLine)
+									{
+									cout << line << endl;
+									
+									}
+									line_count++;
+								}
+								 
+
+								// Close the file
+								inputFile.close();
+					cout << " " << endl;
+					D_actions++;
 					cout <<"You have lost trust with " << villains[trust_attempt-10]->getFirstName() << "." << endl;
 				}
 		}
