@@ -149,6 +149,7 @@ static void tribeChallenge(Survivor* heroes[], int numHeroes, Survivor* villains
 			if (!heroes[i]->isEliminated())
             {
                 heroes[i]->tribe_immune=1;
+                heroes[i]->challenge_wins+=1;
               
             }
 			}
@@ -162,6 +163,7 @@ static void tribeChallenge(Survivor* heroes[], int numHeroes, Survivor* villains
             if (!villains[i]->isEliminated())
             {
                 villains[i]->tribe_immune=1;
+                villains[i]->challenge_wins+=1;
                
             }
 			}
@@ -255,6 +257,7 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 					cout << " " << endl;
 					cout << "You talk to " << heroes[al_attempt]->getFirstName() << " about a potential alliance" << endl;
 				int al_result = rand() % 100;
+				//SUCCESS
 				if(al_result>74)
 				{
 					ifstream inputFile("Heroes_Alliance.csv");
@@ -291,7 +294,8 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 					heroes[al_attempt]->allied=true;
 					D_actions++;
 				}
-				if(al_result<74)
+				//NETURAL RESULT
+				if(al_result<74 && al_result>15)
 				{
 					ifstream inputFile("Heroes_Alliance.csv");
 
@@ -325,6 +329,11 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 					cout << " " << endl;
 					cout << "You have failed to create an alliance with " << heroes[al_attempt]->getFirstName() << "." << endl;
 					D_actions++;
+				}
+				//NEGATIVE RESULT
+				if(al_result<=15)
+				{
+					cout <<"You have become enemies with " << heroes[al_attempt]->getFirstName() << "." << endl;
 				}
 				cout << " " << endl;
 			
@@ -361,6 +370,7 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 					cout << "You started a conversation with " << heroes[trust_attempt]->getFirstName() << ". " << endl;
 				
 				int trust_result = rand() % 100;
+				//SUCCESSFUL RESULT
 				if(trust_result>74)
 				{
 					ifstream inputFile("Heroes_Alliance.csv");
@@ -397,7 +407,7 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 					
 					D_actions++;
 					}
-					if(trust_result<74)
+
 				{
 					ifstream inputFile("Heroes_Alliance.csv");
 
@@ -432,11 +442,35 @@ int day_actions_hero(Survivor* heroes[], int number_survivors_per_tribe, int cho
 					cout << "You have failed to build trust with " << heroes[trust_attempt]->getFirstName() << "." << endl;
 					D_actions++;
 				}
+									//NEUTRAL RESULT
+					if(trust_result<74 && trust_result>15)
+					{
+					
+						cout <<"You have lost trust with " << heroes[trust_attempt]->getFirstName() << "." << endl;
+					}
 		}
 		if(Day_Choice==4)
 		{
 			//This will have the chance to increase a character's strenght 
 			cout << "You have decided to do nothing" << endl;
+			int do_nothing_result=0;
+			cout << "You have decided to do nothing" << endl;
+			do_nothing_result= rand() % 100;
+			//SUCCESS
+			if (do_nothing_result>75)
+			{
+				
+			}
+			//NEUTRAL
+			if(do_nothing_result<75 && do_nothing_result>15)
+			{
+				
+			}
+			//NEGATIVE
+			if(do_nothing_result<15)
+			{
+				
+			}
 			D_actions++;
 		}
 		
@@ -514,8 +548,8 @@ int day_actions_villain(Survivor* villains[], int number_survivors_per_tribe, in
 			 
 					D_actions++;
 				}
-				
-				if(al_result<74)
+				//Neutral
+				if(al_result<74 && al_result>15)
 				{	
 					
 					ifstream inputFile("Villians_Alliance.csv");
@@ -552,6 +586,12 @@ int day_actions_villain(Survivor* villains[], int number_survivors_per_tribe, in
 					cout << "You have failed to create an alliance with " << villains[al_attempt-10]->getFirstName() << "." << endl;
 					D_actions++;
 				}
+				//NEGATIVE RESULT
+				if(al_result<=15)
+				{
+					cout <<"You have become enemies with " << villains[al_attempt-10]->getFirstName() << "." << endl;
+				}
+				cout << " " << endl;
 			
 		}
 		
@@ -587,6 +627,7 @@ int day_actions_villain(Survivor* villains[], int number_survivors_per_tribe, in
 					cout << "You started a conversation with " << villains[trust_attempt-10]->getFirstName() << ". " << endl;
 				
 				int trust_result = rand() % 100;
+				//SUCCESS
 				if(trust_result>74)
 				{
 					ifstream inputFile("Villians_Alliance.csv");
@@ -623,6 +664,7 @@ int day_actions_villain(Survivor* villains[], int number_survivors_per_tribe, in
 					
 					D_actions++;
 					}
+					//NEUTRAL
 					if(trust_result<74)
 				{
 					ifstream inputFile("Villians_Alliance.csv");
@@ -658,10 +700,35 @@ int day_actions_villain(Survivor* villains[], int number_survivors_per_tribe, in
 					cout << "You have failed to build trust with " << villains[trust_attempt-10]->getFirstName() << "." << endl;
 					D_actions++;
 				}
+				//NEGATIVE RESULT
+				if(trust_result<=15)
+				{
+					
+					cout <<"You have lost trust with " << villains[trust_attempt-10]->getFirstName() << "." << endl;
+				}
 		}
 		if(Day_Choice==4)
 		{
+			
+			int do_nothing_result=0;
 			cout << "You have decided to do nothing" << endl;
+			do_nothing_result= rand() % 100;
+			//SUCCESS
+			if (do_nothing_result>75)
+			{
+				
+			}
+			//NEUTRAL
+			if(do_nothing_result<75 && do_nothing_result>15)
+			{
+				
+			}
+			//NEGATIVE
+			if(do_nothing_result<15)
+			{
+				
+			}
+			
 			D_actions++;
 		}
 		
@@ -739,6 +806,7 @@ static void IndvidualChallenge(Survivor* heroes[],  Survivor* villains[], int nu
             if (!heroes[i]->isEliminated() && heroes[i]->getFirstName() == BestHero)
             {
                 heroes[i]->immune=1;
+                heroes[i]->challenge_wins+=1;
                 break;
             }
         }
@@ -752,6 +820,7 @@ static void IndvidualChallenge(Survivor* heroes[],  Survivor* villains[], int nu
             if (!villains[i]->isEliminated() && villains[i]->getFirstName() == BestVillain)
             {
                 villains[i]->immune=1;
+                villains[i]->challenge_wins+=1;
                 break;
             }
 		}
@@ -782,6 +851,7 @@ static void Winner()
 	cout << "      $       " << endl;
 	cout << " " << endl;
 	cout << "You are the ULTIMATE SURVIVOR! YOU WIN 1 MILLION DOLLARS!" << endl;
+	cout << " " << endl;
 	    
 	
 }
@@ -939,8 +1009,9 @@ for (int s=0; s<20;s++)//columns
 				cout << "*";
 			}
 		}
-		cout << endl;
+		cout << " " << endl;
 		cout << "YOU LOSE!" << endl;
+		cout << " " << endl;
 	}
 };
 	
