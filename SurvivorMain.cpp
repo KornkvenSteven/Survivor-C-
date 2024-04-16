@@ -759,6 +759,189 @@ static void IndvidualChallenge(Survivor* heroes[],  Survivor* villains[], int nu
 
 	  
 	}
+static void Winner()
+{
+	cout << "      $   $$   "<< endl;
+	cout <<"       $ $$$     "<< endl;
+	cout <<"    $$$$$$"<< endl;
+	cout <<"   $$  $      "<< endl;
+	cout <<"   $$  $      "<<endl;
+	cout <<"    $$ $      " << endl;
+	cout <<"      $$      " << endl;
+	cout << "      $$$    " << endl;
+	cout << "      $ $$    " << endl;
+	cout << "      $  $$ " << endl;
+	cout << "      $   $$" << endl;
+	cout << "      $  $$   " << endl;
+	cout << "      $ $$    " << endl;
+	cout << "      $$$    " << endl;
+	cout << " $    $$$     " << endl;
+	cout << " $$ $$$$       " << endl;
+	cout << "  $$$$$        " << endl;
+	cout << "      $        " << endl;
+	cout << "      $       " << endl;
+	cout << " " << endl;
+	cout << "You are the ULTIMATE SURVIVOR! YOU WIN 1 MILLION DOLLARS!" << endl;
+	    
+	
+}
+
+static void Loser()
+{
+for (int s=0; s<20;s++)//columns
+		{
+			cout << " ";
+			if (s>=10 && s<=16)
+			{
+				cout <<"*";
+			}
+		}
+			cout << endl;
+		
+		for (int s=0; s<22;s++)//columns
+		{
+			cout << " ";
+
+			if(s==6 || s==20)
+			{
+				cout <<"* *";
+			}
+		
+		}
+			cout << endl;
+		
+		for (int i=0; i<2; i++)
+		{
+		for (int s=0; s<30;s++)//columns
+		{
+			cout << " ";
+
+			if(s==5 || s==25)
+			{
+				cout <<"*";
+			}
+		
+		}
+			cout << endl;
+		}
+		
+		for (int i=0; i<2; i++)
+		{
+		for (int s=0; s<30;s++)//columns
+		{
+			cout << " ";
+
+			if(s==3 || s==27)
+			{
+				cout <<"*";
+			}
+		
+		}
+			cout << endl;
+		}
+	
+	
+		
+		for (int i=0; i<3; i++)
+		{
+		for (int s=0; s<33;s++)//columns
+		{
+			cout << " ";
+
+			if(s==1 || s==20)
+			{
+				cout <<"*";
+			}
+			if(s==8 || s==13)
+			{
+				cout << "****";
+			}
+		
+		}
+			cout << endl;
+		}
+		
+		
+		for (int s=0; s<33;s++)//columns
+		{
+			cout << " ";
+
+			if(s==3 || s==26)
+			{
+				cout <<"*";
+			}
+		}
+			cout << endl;
+			
+			
+		for (int s=0; s<33;s++)//columns
+		{
+			cout << " ";
+
+			if(s==4 || s==24)
+			{
+				cout <<"*";
+			}
+		}
+			cout << endl;
+			
+			
+		for (int s=0; s<33;s++)//columns
+		{
+			cout << " ";
+
+			if(s==6 || s==19)
+			{
+				cout <<"*";
+			}
+			if(s==13)
+			{
+				cout <<"***";
+			}
+		}
+			cout << endl;
+			
+			
+		for (int i=0; i<2; i++)
+		{
+		for (int s=0; s<30;s++)//columns
+		{
+			cout << " ";
+
+			if(s==7 || s==20 )
+			{
+				cout <<"*";
+			}
+			
+		}
+			cout << endl;
+		}
+		
+		for (int i=0;i<2;i++)
+		{
+		for (int s=0; s<30; s++)
+		{
+			cout <<" ";
+			
+			if (s==7 || s==14 || s==12|| s==18)
+			{
+				cout <<"*";
+			}
+		}
+		cout << endl;
+		}
+		
+		for (int s=0; s<30; s++)
+		{
+			cout <<" ";
+			if(s>7 && s<15)
+			{
+				cout << "*";
+			}
+		}
+		cout << endl;
+		cout << "YOU LOSE!" << endl;
+	}
 };
 	
         
@@ -869,6 +1052,10 @@ while (replay==1)
     //day=day+2
 	//}
 	cout << " " << endl;
+	
+	Survivor::Loser();
+	
+	Survivor:: Winner();
 	
 	cout << "Would you like to play again? " << endl;
 	cout <<"1) Yes! 2) No!" << endl;
