@@ -1610,7 +1610,7 @@ int day_actions_villain(HvV* villains[], int number_survivors_per_tribe, int cho
 			for (int i=0;i<number_survivors_per_tribe; i++)
 			{
 			
-				if(i+10 != choice)
+				if(i+10 != choice && villains[i]->allied==0 )
 				{
 				cout << villains[i]->getFirstName() << endl;
 				}
@@ -2053,6 +2053,7 @@ void random_event()
 
 int main() 
 {
+	int days=0;
 	int replay=1;
 	 srand(time(0));
     const int number_survivors_per_tribe = 10;
@@ -2071,24 +2072,26 @@ int main()
 switch(season)
 	{
 		case 1:
-	
-   
+		
+		
+		
+			
 			while (replay==1)
 				{
 				// Initialize Survivor objects
 				HvV* heroes[number_survivors_per_tribe] = 
 				{
-						//name           tribe         strength  vote_id  allied  trust immune tribe_I challenge wins  allies made         trust built
-        new HvV("#0 Sugar Kiper",  "Heroes",        13,        0,        0,    5,    0,   0,        0,            0,                  0,0),
-        new HvV("#1 Stephenie LaGrossa",  "Heroes", 15,        1,        0,	5,    0,   0,        0,            0,                  0,0),
-        new HvV("#2 Cercie Fields",  "Heroes",      11,        2,        0,    5,    0,   0,        0 ,           0,                  0,0),
-        new HvV("#3 Tom Westman",  "Heroes",        16,        3,        0,    5,    0,   0,        0,            0,                  0,0),
-        new HvV("#4 James Clement",  "Heroes",      15,        4,        0,    5,    0,   0,        0,            0,                  0,0),
-        new HvV("#5 J.T Thomas",  "Heroes",         16,        5,        0,    5,    0,   0,        0,            0,                  0,0),
-        new HvV("#6 Amanda Kimmel",  "Heroes",      15,        6,        0,    5,    0,   0,        0,            0,                  0,0),
-        new HvV("#7 Candice Woodcock",  "Heroes",   14,        7,        0,    5,    0,   0,        0,            0,                  0,0),
-        new HvV("#8 Rupert Boneham",  "Heroes",     17,        8,        0,    5,    0,   0,        0,            0,                  0,0),
-        new HvV("#9 Colby Donaldson",  "Heroes",    15,        9,        0,    5,    0,   0,        0,            0,                  0,0)
+						//name           tribe         strength  vote_id  allied  trust immune tribe_I challenge wins  allies made   Idol      trust built
+        new HvV("#0 Sugar Kiper",  "Heroes",        13,        0,        0,    5,    0,   0,        0,            0,                  0,      0),
+        new HvV("#1 Stephenie LaGrossa",  "Heroes", 15,        1,        0,	   5,    0,   0,        0,            0,                  0,      0),
+        new HvV("#2 Cercie Fields",  "Heroes",      11,        2,        0,    5,    0,   0,        0 ,           0,                  0,      0),
+        new HvV("#3 Tom Westman",  "Heroes",        16,        3,        0,    5,    0,   0,        0,            0,                  0,      0),
+        new HvV("#4 James Clement",  "Heroes",      15,        4,        0,    5,    0,   0,        0,            0,                  0,      0),
+        new HvV("#5 J.T Thomas",  "Heroes",         16,        5,        0,    5,    0,   0,        0,            0,                  0,      0),
+        new HvV("#6 Amanda Kimmel",  "Heroes",      15,        6,        0,    5,    0,   0,        0,            0,                  0,      0),
+        new HvV("#7 Candice Woodcock",  "Heroes",   14,        7,        0,    5,    0,   0,        0,            0,                  0,      0),
+        new HvV("#8 Rupert Boneham",  "Heroes",     17,        8,        0,    5,    0,   0,        0,            0,                  0,      0),
+        new HvV("#9 Colby Donaldson",  "Heroes",    15,        9,        0,    5,    0,   0,        0,            0,                  0,      0)
 				};
     
     //It might be easier to make the allied and immune into bools. Theyre already just working as true or false basically
@@ -2128,7 +2131,8 @@ switch(season)
 					{
 					choice = villains[0]->selectSurvivorVillain(villains, number_survivors_per_tribe);
 					}
-    
+    while(days<20)
+    {
 				if(character_choice==1)
 					{
 					heroes[0]->day_actions_hero(heroes, number_survivors_per_tribe, choice);
@@ -2137,7 +2141,9 @@ switch(season)
 					{
 					villains[0]->day_actions_villain(villains, number_survivors_per_tribe, choice);
 					}
-	
+	days++;
+	HvV::tribeChallenge(heroes, number_survivors_per_tribe, villains, number_survivors_per_tribe);
+	}
 HvV::IndvidualChallenge(heroes,villains,number_survivors_per_tribe);
     //NEED TO ADD TRIBAL COUNCLE FOR TRIBES 
     //day=day+2
@@ -2146,8 +2152,8 @@ HvV::IndvidualChallenge(heroes,villains,number_survivors_per_tribe);
 Survivor::Loser();
 	
 Survivor:: Winner();
-}
-	
+
+}	
 break;
 	
 					case 2:
