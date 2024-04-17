@@ -23,8 +23,8 @@ protected:
     int allied;
 
 public:
-    Survivor(string first_name, string tribe, int strength, int vote_ID, int allied, int trust, int immune,int tribe_immune, int challenge_wins, int allies_made,int trust_made) 
-    {
+Survivor(string first_name, string tribe, int strength, int vote_ID, int allied, int trust, int immune,int tribe_immune, int challenge_wins, int allies_made,int trust_made) 
+{
         this->first_name = first_name;
         this->tribe = tribe;
         this->strength = strength;
@@ -38,7 +38,7 @@ public:
         this-> allies_made=allies_made;
         this-> trust_made=trust_made;
     }
-    static void Winner()
+static void Winner()
 {
 	cout << "      $   $$   "<< endl;
 	cout <<"       $ $$$     "<< endl;
@@ -289,55 +289,55 @@ Samoa(string first_name, string tribe, int strength, int vote_ID, int allied, in
 
 
 int selectSurvivorS(Samoa* galu[], int numSurvivors)
-    {
+{
         int choice;
         cout << "Choose your Survivor:" << endl;
-        for (int i = 0; i < numSurvivors; ++i) 
-        {
-            cout << galu[i]->getFirstName() << endl;
-        }
+			for (int i = 0; i < numSurvivors; ++i) 
+			{
+				cout << galu[i]->getFirstName() << endl;
+			}
         
-        cout << "Enter the number of your choice: ";
-        cin >> choice;
-        if (choice<=9 && choice>=0) 
-        {
-            cout << " " << endl;
-            cout << "You have chosen " << galu[choice]->getFirstName() << endl;
-            cout << " " << endl;
-            return choice;
-        } 
-        else 
-        {
-            cout << "Invalid choice. Please try again." << endl;
-            return selectSurvivorS(galu, numSurvivors);
-        }
-    }
+			cout << "Enter the number of your choice: ";
+			cin >> choice;
+				if (choice<=9 && choice>=0) 
+				{
+					cout << " " << endl;
+					cout << "You have chosen " << galu[choice]->getFirstName() << endl;
+					cout << " " << endl;
+						return choice;
+				} 
+				else 
+				{
+					cout << "Invalid choice. Please try again." << endl;
+						return selectSurvivorS(galu, numSurvivors);
+				}
+}
 int selectSurvivorVillainS(Samoa* foa[], int numSurvivors)
-    {
+{
         int choice;
-        cout << "Choose your Survivor:" << endl;
-        for (int i = 0; i < numSurvivors; ++i) 
-        {
-            cout << foa[i]->getFirstName() << endl;
-        }
+		cout << "Choose your Survivor:" << endl;
+			for (int i = 0; i < numSurvivors; ++i) 
+			{
+				cout << foa[i]->getFirstName() << endl;
+			}
         
-        cout << "Enter the number of your choice: ";
-        cin >> choice;
-        if (choice>=10 && choice<=19) 
-        {
-            cout << " " << endl;
-            cout << "You have chosen " << foa[choice-10]->getFirstName() << endl;
-            cout << " " << endl;
-            return choice;
-        } 
-        else 
-        {
-            cout << "Invalid choice. Please try again." << endl;
-            return selectSurvivorVillainS(foa, numSurvivors);
-        }
-    }
+			cout << "Enter the number of your choice: ";
+			cin >> choice;
+			if (choice>=10 && choice<=19) 
+			{
+				cout << " " << endl;
+				cout << "You have chosen " << foa[choice-10]->getFirstName() << endl;
+				cout << " " << endl;
+					return choice;
+			} 
+			else 
+			{
+				cout << "Invalid choice. Please try again." << endl;
+				return selectSurvivorVillainS(foa, numSurvivors);
+			}
+}
 static void tribeChallengeS(Samoa* galu[], int numHeroes, Samoa* foa[], int numVillains)
-    {	
+{	
 		
         int totalStrengthHeroes = 0, totalStrengthVillains = 0;
         int StrenghtHeroes=0, StrengthVillains=0;
@@ -349,27 +349,19 @@ static void tribeChallengeS(Samoa* galu[], int numHeroes, Samoa* foa[], int numV
             if (!galu[i]->isEliminated()) 
             {
                 StrenghtHeroes += galu[i]->getStrength();
-                
-               
 			}
                     totalStrengthHeroes=rand() % StrenghtHeroes;
-                
-                
             }
-        
-	
+      
         // Calculate total strength for Villains tribe
         for (int i = 0; i < numVillains; ++i) 
         {
             if (!foa[i]->isEliminated())
              {
-                StrengthVillains += foa[i]->getStrength();
-					
-						
+                StrengthVillains += foa[i]->getStrength();	
 			}
                     totalStrengthVillains=rand() % StrengthVillains;
             }
-            
         }while(totalStrengthVillains==totalStrengthHeroes);
          
          //Displays total tribe strenght, then how the tribe performed in the challenge 
@@ -386,7 +378,6 @@ static void tribeChallengeS(Samoa* galu[], int numHeroes, Samoa* foa[], int numV
             {
                 galu[i]->tribe_immune=1;
                 galu[i]->challenge_wins+=1;
-              
             }
 			}
            
@@ -400,7 +391,6 @@ static void tribeChallengeS(Samoa* galu[], int numHeroes, Samoa* foa[], int numV
             {
                 foa[i]->tribe_immune=1;
                 foa[i]->challenge_wins+=1;
-               
             }
 			}
         } 
@@ -414,59 +404,53 @@ int day_actions_heroS(Samoa* galu[], int number_survivors_per_tribe, int choice)
 		
 		cout << "You have " << 3 - D_actions << " actions left for the day" << endl;
 		cout << "1) Attempt Aliance 2) Look for Idol 3)Build Trust 4)Do nothing" << endl;
-		int Day_Choice;
-		cin >> Day_Choice;
+			int Day_Choice;
+				cin >> Day_Choice;
 		
-		if(Day_Choice==1)
-		{
+			if(Day_Choice==1)
+			{
 			//This will give the player a chance to make an alliance with another player 
 			cout << "Who do you want to attempt to make an alliance with?" << endl;
 			cout << " " << endl;
 			int al_attempt;
 			
-			for (int i=0;i<number_survivors_per_tribe; i++)
-			{
+				for (int i=0;i<number_survivors_per_tribe; i++)
+				{
 			
 				
-				if(i != choice)//checks to make sure that the player cannot make an alliance with themselves 
-				{
-				cout << galu[i]->getFirstName() << endl;
+					if(i != choice)//checks to make sure that the player cannot make an alliance with themselves 
+					{
+					cout << galu[i]->getFirstName() << endl;
+					}
 				}
-			}
 				cin >> al_attempt;
 					cout << " " << endl;
 					cout << "You talk to " << galu[al_attempt]->getFirstName() << " about a potential alliance" << endl;
 				int al_result = rand() % 100;
 				//SUCCESS
-				if(al_result>74)
-				{
+					if(al_result>74)
+					{
 					ifstream inputFile("Heroes_Alliance.csv");
-
 				// Check if the file was opened successfully
 						if (!inputFile) 
 						{
 							cout << "Failed to open the file." << endl;
 							return 1;
-								}
-
+						}
 					// Skip lines until the desired line
 						int targetLine = al_attempt+10; // Change this to the line number you want to read
 						string line;
-								
+
 						int line_count=0;
 					// Read the desired line
 								while(getline(inputFile, line)) 
 								{
-									
-									
 									if(line_count==targetLine)
 									{
 									cout << line << endl;
 									}
 									line_count++;
 								}
-								 
-
 								// Close the file
 								inputFile.close();
 					cout << " " << endl;
@@ -494,16 +478,12 @@ int day_actions_heroS(Samoa* galu[], int number_survivors_per_tribe, int choice)
 					// Read the desired line
 								while(getline(inputFile, line)) 
 								{
-									
-									
 									if(line_count==targetLine)
 									{
 									cout << line << endl;
 									}
 									line_count++;
-								}
-								 
-
+								}								
 								// Close the file
 								inputFile.close();
 					cout << " " << endl;
@@ -530,24 +510,18 @@ int day_actions_heroS(Samoa* galu[], int number_survivors_per_tribe, int choice)
 					// Read the desired line
 								while(getline(inputFile, line)) 
 								{
-									
-									
 									if(line_count==targetLine)
 									{
 									cout << line << endl;
 									}
 									line_count++;
 								}
-								 
-
 								// Close the file
 								inputFile.close();
 								D_actions++;
 					cout <<"You have become enemies with " << galu[al_attempt]->getFirstName() << "." << endl;
 				}
 				cout << " " << endl;
-			
-			
 		}
 		if(Day_Choice==2)
 		{
@@ -607,8 +581,6 @@ int day_actions_heroS(Samoa* galu[], int number_survivors_per_tribe, int choice)
 									}
 									line_count++;
 								}
-								 
-
 								// Close the file
 								inputFile.close();
 					cout << " " << endl;
@@ -672,16 +644,12 @@ int day_actions_heroS(Samoa* galu[], int number_survivors_per_tribe, int choice)
 					// Read the desired line
 								while(getline(inputFile, line)) 
 								{
-									
-									
 									if(line_count==targetLine)
 									{
 									cout << line << endl;
 									}
 									line_count++;
 								}
-								 
-
 								// Close the file
 								inputFile.close();
 								D_actions++;
@@ -713,10 +681,7 @@ int day_actions_heroS(Samoa* galu[], int number_survivors_per_tribe, int choice)
 			}
 			D_actions++;
 		}
-		
-		
 	}
-	
 };  
 int day_actions_villainS(Samoa* foa[], int number_survivors_per_tribe, int choice)
 {
@@ -1070,7 +1035,7 @@ static void IndvidualChallengeS(Samoa* galu[],  Samoa* foa[], int number_survivo
 					BestHero=galu[i]->getFirstName();
 				}
 		}
-                
+             
                 cout << HeroName << " Strength is: " << HeroStrength << " Performed: " << PerformanceStrengthHeroes << endl;
            }
          for (int i = 0; i <number_survivors_per_tribe; ++i) 
@@ -1083,8 +1048,7 @@ static void IndvidualChallengeS(Samoa* galu[],  Samoa* foa[], int number_survivo
                  VillainName=foa[i]->getFirstName();
                 PerformanceStrengthVillains=rand() % VillainStrength;
 				}while(tempy2==PerformanceStrengthVillains);
-               
-			
+             
 				if(PerformanceStrengthVillains>BestStrengthVillains)
 				{
 					BestStrengthVillains=PerformanceStrengthVillains;
@@ -1094,12 +1058,7 @@ static void IndvidualChallengeS(Samoa* galu[],  Samoa* foa[], int number_survivo
 			}
                 
               cout << VillainName << " Strength is: " << VillainStrength << " Performed: " << PerformanceStrengthVillains << endl;
-           
-           
-           
            }
-       
-          
 	   }while(tempy1==tempy2);
 	   
 	if (BestStrenghtHeroes > BestStrengthVillains)
@@ -1189,16 +1148,11 @@ class HvV: public Survivor
 		{
 			this->Idol=Idol;
 		}
-
-
-		
-
-
 //This runs the challeges for the tribe phase
 //The strenght of each survior is added together for each team, then a random number is selected
 //Higher the strenght is the more higher numbers they will get, so in theory a better chance to win 
 static void tribeChallenge(HvV* heroes[], int numHeroes, HvV* villains[], int numVillains)
-    {	
+{	
 		
         int totalStrengthHeroes = 0, totalStrengthVillains = 0;
         int StrenghtHeroes=0, StrengthVillains=0;
@@ -1270,7 +1224,7 @@ static void tribeChallenge(HvV* heroes[], int numHeroes, HvV* villains[], int nu
 //This allows the user to select the survivor that they want to play as
 //First given the option to pick their tribe, then select from 10 different characters
 int selectSurvivor(HvV* heroes[], int numSurvivors)
-    {
+{
         int choice;
         cout << "Choose your Survivor:" << endl;
         for (int i = 0; i < numSurvivors; ++i) 
@@ -1295,7 +1249,7 @@ int selectSurvivor(HvV* heroes[], int numSurvivors)
     }
 
 int selectSurvivorVillain(HvV* villain[], int numSurvivors)
-    {
+{
         int choice;
         cout << "Choose your Survivor:" << endl;
         for (int i = 0; i < numSurvivors; ++i) 
@@ -2120,14 +2074,14 @@ int main()
 	
 switch(season)
 	{
-	case 1:
+		case 1:
 	
    
-    while (replay==1)
-    {
-    // Initialize Survivor objects
-    HvV* heroes[number_survivors_per_tribe] = 
-    {
+			while (replay==1)
+				{
+				// Initialize Survivor objects
+				HvV* heroes[number_survivors_per_tribe] = 
+				{
 						//name           tribe         strength  vote_id  allied  trust immune tribe_I challenge wins  allies made         trust built
         new HvV("#0 Sugar Kiper",  "Heroes",        13,        0,        0,    5,    0,   0,        0,            0,                  0,0),
         new HvV("#1 Stephenie LaGrossa",  "Heroes", 15,        1,        0,	5,    0,   0,        0,            0,                  0,0),
@@ -2139,7 +2093,7 @@ switch(season)
         new HvV("#7 Candice Woodcock",  "Heroes",   14,        7,        0,    5,    0,   0,        0,            0,                  0,0),
         new HvV("#8 Rupert Boneham",  "Heroes",     17,        8,        0,    5,    0,   0,        0,            0,                  0,0),
         new HvV("#9 Colby Donaldson",  "Heroes",    15,        9,        0,    5,    0,   0,        0,            0,                  0,0)
-    };
+				};
     
     //It might be easier to make the allied and immune into bools. Theyre already just working as true or false basically
     //But I don't know which would be easier 
@@ -2150,8 +2104,8 @@ switch(season)
     //The ID's need to be different from the ones for the heros, this will be important during merge phase 
     
     
-    HvV* villains[number_survivors_per_tribe] = 
-    {
+				HvV* villains[number_survivors_per_tribe] = 
+				{
 							//name           tribe        strength  vote_id  allied  trust immune  tribe_I  challenge wins  allies made         trust built
         new HvV("#10 Courtney Yates",  "Villains",    12,         10,      0,     5,     0,   0,       0,                0,                 0,0),
         new HvV("#11 Russell Hantz",  "Villains",     15,         11,      0,     5,     0,   0,       0,                0,                 0,0),
@@ -2163,58 +2117,50 @@ switch(season)
         new HvV("#17 Sandra Diaz-Twine ",  "Villains",11,         17,      0,     5,     0,   0,       0,                0,                 0,0),
         new HvV("#18 Parviti Shallow ",  "Villains",  16,         18,      0,     5,     0,   0,       0,                0,                 0,0),
         new HvV("#19 Danielle DiLorenzo", "Villains", 16,         19,      0,     5,     0,   0,       0,                0,                 0,0)
-    };
+				};
 		
-
-
+				cout << "Would you like to play as a Hero or Villain? " << endl;
+				cout <<"Press 1 for Hero. " << " " << "Press 2 for Villain" << endl;
+						int character_choice;
+						cin >> character_choice;
+	
+				if(character_choice == 1)
+					{
+					choice = heroes[0]->selectSurvivor(heroes, number_survivors_per_tribe);
+					}
+				if (character_choice == 2)
+					{
+					choice = villains[0]->selectSurvivorVillain(villains, number_survivors_per_tribe);
+					}
     
-
-	cout << "Would you like to play as a Hero or Villain? " << endl;
-	cout <<"Press 1 for Hero. " << " " << "Press 2 for Villain" << endl;
-	int character_choice;
-	cin >> character_choice;
+				if(character_choice==1)
+					{
+					heroes[0]->day_actions_hero(heroes, number_survivors_per_tribe, choice);
+					}
+				if(character_choice==2)
+					{
+					villains[0]->day_actions_villain(villains, number_survivors_per_tribe, choice);
+					}
 	
-	if(character_choice == 1)
-	{
-	    choice = heroes[0]->selectSurvivor(heroes, number_survivors_per_tribe);
-	}
-	if (character_choice == 2)
-	{
-	    choice = villains[0]->selectSurvivorVillain(villains, number_survivors_per_tribe);
-	}
-    
-	
-	
-
-	if(character_choice==1)
-	{
-	heroes[0]->day_actions_hero(heroes, number_survivors_per_tribe, choice);
-	}
-	if(character_choice==2)
-	{
-	villains[0]->day_actions_villain(villains, number_survivors_per_tribe, choice);
-	}
-	
-   HvV::IndvidualChallenge(heroes,villains,number_survivors_per_tribe);
+HvV::IndvidualChallenge(heroes,villains,number_survivors_per_tribe);
     //NEED TO ADD TRIBAL COUNCLE FOR TRIBES 
     //day=day+2
 	//}
 	cout << " " << endl;
+Survivor::Loser();
 	
-	Survivor::Loser();
-	
-	Survivor:: Winner();
+Survivor:: Winner();
 }
 	
-	break;
+break;
 	
-	case 2:
+					case 2:
 	
-	while(replay==1)
-	{
-    // Initialize Survivor objects
-   Samoa* galu[number_survivors_per_tribe] = 
-    {
+						while(replay==1)
+						{
+						// Initialize Survivor objects
+						Samoa* galu[number_survivors_per_tribe] = 
+						{
 						//name           tribe         strength  vote_id  allied  trust immune tribe_I challenge wins  allies made         trust built
         new Samoa("#0 Yasmin Giles",  "Galu",        13,        0,        0,    5,    0,   0,        0,            0,                  0),
         new Samoa("#1 Russell Swan",  "Galu", 15,        1,        0,	5,    0,   0,        0,            0,                  0),
@@ -2226,7 +2172,7 @@ switch(season)
         new Samoa("#7 Shambo Waters",  "Galu",   14,        7,        0,    5,    0,   0,        0,            0,                  0),
         new Samoa("#8 Brett Clouser",  "Galu",     17,        8,        0,    5,    0,   0,        0,            0,                  0),
         new Samoa("#9 laura Morett",  "Galu",    15,        9,        0,    5,    0,   0,        0,            0,                  0)
-    };
+						};
     
     //It might be easier to make the allied and immune into bools. Theyre already just working as true or false basically
     //But I don't know which would be easier 
@@ -2237,8 +2183,8 @@ switch(season)
     //The ID's need to be different from the ones for the heros, this will be important during merge phase 
     
     
-    Samoa* foa[number_survivors_per_tribe] = 
-    {
+						Samoa* foa[number_survivors_per_tribe] = 
+						{
 							//name           tribe        strength  vote_id  allied  trust immune  tribe_I  challenge wins  allies made         trust built
         new Samoa("#10 Marisa Cailhan",  "Foa Foa",    12,         10,      0,     5,     0,   0,       0,                0,                 0),
         new Samoa("#11 Mike Borassi",  "Foa Foa",     15,         11,      0,     5,     0,   0,       0,                0,                 0),
@@ -2250,65 +2196,55 @@ switch(season)
         new Samoa("#17 Ben Browning",  "Foa Foa",11,         17,      0,     5,     0,   0,       0,                0,                 0),
         new Samoa("#18 Russell Hantz ",  "Foa Foa",  16,         18,      0,     5,     0,   0,       0,                0,                 0),
         new Samoa("#19 Natalie White", "Foa Foa", 16,         19,      0,     5,     0,   0,       0,                0,                 0)
-    };
+						};
 
 
    
 
-	cout << "Would you like to play as a Galu or Foa Foa? " << endl;
-	cout <<"Press 1 for Galu. " << " " << "Press 2 for Foa Foa" << endl;
-	int character_choice;
-	cin >> character_choice;
+						cout << "Would you like to play as a Galu or Foa Foa? " << endl;
+						cout <<"Press 1 for Galu. " << " " << "Press 2 for Foa Foa" << endl;
+						int character_choice;
+						cin >> character_choice;
 	
-	if(character_choice == 1)
-	{
-	    choice = galu[0]->selectSurvivorS(galu, number_survivors_per_tribe);
-	}
-	if (character_choice == 2)
-	{
-	    choice = foa[0]->selectSurvivorVillainS(foa, number_survivors_per_tribe);
-	}
+						if(character_choice == 1)
+						{
+							choice = galu[0]->selectSurvivorS(galu, number_survivors_per_tribe);
+						}
+						if (character_choice == 2)
+						{
+							choice = foa[0]->selectSurvivorVillainS(foa, number_survivors_per_tribe);
+						}
     
+					cout << " " << endl;
+		
+						if(character_choice==1)
+						{
+							galu[0]->day_actions_heroS(galu, number_survivors_per_tribe, choice);
+						}
+						if(character_choice==2)
+						{
+						foa[0]->day_actions_villainS(foa, number_survivors_per_tribe, choice);
+						}
 	
-	
-	cout << " " << endl;
-	
-	if(character_choice==1)
-	{
-	galu[0]->day_actions_heroS(galu, number_survivors_per_tribe, choice);
-	}
-	if(character_choice==2)
-	{
-	foa[0]->day_actions_villainS(foa, number_survivors_per_tribe, choice);
-	}
-	
-	cout << " " << endl;
-	
-	Samoa::tribeChallengeS(galu, number_survivors_per_tribe, foa, number_survivors_per_tribe);
+					cout << " " << endl;
+Samoa::tribeChallengeS(galu, number_survivors_per_tribe, foa, number_survivors_per_tribe);
 	
 	cout << " " << endl;
 	
-	Samoa::IndvidualChallengeS(galu,foa,number_survivors_per_tribe);
+Samoa::IndvidualChallengeS(galu,foa,number_survivors_per_tribe);
 	
 	cout << " " << endl;
 	
-	Survivor::Loser();
+Survivor::Loser();
 	
 	cout << " " << endl;
 	
-	Survivor:: Winner();
+Survivor:: Winner();
 	
-	break;
-	
-	
-	
+break;
 	
 	}
 	
-	
-	
-	
-
 	
 	cout << "Would you like to play again? " << endl;
 	cout <<"1) Yes! 2) No!" << endl;
