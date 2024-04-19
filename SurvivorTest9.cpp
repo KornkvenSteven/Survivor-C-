@@ -479,7 +479,7 @@ int day_actions_heroS(Samoa* galu[], int number_survivors_per_tribe, int choice)
 				{
 			
 				
-					if(i != choice && galu[i]->allied==0 && galu[i]->getEliminated==0)//checks to make sure that the player cannot make an alliance with themselves 
+					if(i != choice && galu[i]->allied==0 && galu[i]->getEliminated()==0)//checks to make sure that the player cannot make an alliance with themselves 
 					{
 					cout << galu[i]->getFirstName() << endl;
 					}
@@ -1132,7 +1132,7 @@ static void IndvidualChallengeS(Samoa* galu[],  Samoa* foa[], int number_survivo
    {// Calculate total strength for Heroes tribe
         for (int i = 0; i < number_survivors_per_tribe; ++i) 
         {
-            if (!galu[i]->isEliminated()) 
+            if (galu[i]->getEliminated()==0) 
             {
          do
             {
@@ -1154,7 +1154,7 @@ static void IndvidualChallengeS(Samoa* galu[],  Samoa* foa[], int number_survivo
            }
          for (int i = 0; i <number_survivors_per_tribe; ++i) 
         {
-            if (!foa[i]->isEliminated()) 
+            if (foa[i]->getEliminated()==0) 
             {
 				do
 				{
@@ -1181,7 +1181,7 @@ static void IndvidualChallengeS(Samoa* galu[],  Samoa* foa[], int number_survivo
         // Set immunity for the winning hero
         for (int i = 0; i < number_survivors_per_tribe; ++i)
         {
-            if (!galu[i]->isEliminated() && galu[i]->getFirstName() == BestHero)
+            if (!galu[i]->getEliminated()==0 && galu[i]->getFirstName() == BestHero)
             {
                 galu[i]->immune=1;
                 galu[i]->challenge_wins+=1;
@@ -1195,7 +1195,7 @@ static void IndvidualChallengeS(Samoa* galu[],  Samoa* foa[], int number_survivo
         // Set immunity for the winning villain
         for (int i = 0; i < number_survivors_per_tribe; ++i)
         {
-            if (!foa[i]->isEliminated() && foa[i]->getFirstName() == BestVillain)
+            if (foa[i]->getEliminated()==0 && foa[i]->getFirstName() == BestVillain)
             {
                 foa[i]->immune=1;
                 foa[i]->challenge_wins+=1;
@@ -2173,7 +2173,7 @@ static void IndvidualChallenge(HvV* heroes[],  HvV* villains[], int number_survi
    {// Calculate total strength for Heroes tribe
         for (int i = 0; i < number_survivors_per_tribe; ++i) 
         {
-            if (!heroes[i]->isEliminated()) 
+            if (heroes[i]->getEliminated()==0) 
             {
          do
             {
@@ -2195,7 +2195,7 @@ static void IndvidualChallenge(HvV* heroes[],  HvV* villains[], int number_survi
            }
          for (int i = 0; i <number_survivors_per_tribe; ++i) 
         {
-            if (!villains[i]->isEliminated()) 
+            if (villains[i]->getEliminated()==0) 
             {
 				do
 				{
@@ -2228,7 +2228,7 @@ static void IndvidualChallenge(HvV* heroes[],  HvV* villains[], int number_survi
         // Set immunity for the winning hero
         for (int i = 0; i < number_survivors_per_tribe; ++i)
         {
-            if (!heroes[i]->isEliminated() && heroes[i]->getFirstName() == BestHero)
+            if (heroes[i]->getEliminated()==0 && heroes[i]->getFirstName() == BestHero)
             {
                 heroes[i]->immune=1;
                 heroes[i]->challenge_wins+=1;
@@ -2242,7 +2242,7 @@ static void IndvidualChallenge(HvV* heroes[],  HvV* villains[], int number_survi
         // Set immunity for the winning villain
         for (int i = 0; i < number_survivors_per_tribe; ++i)
         {
-            if (!villains[i]->isEliminated() && villains[i]->getFirstName() == BestVillain)
+            if (villains[i]->getEliminated()==0 && villains[i]->getFirstName() == BestVillain)
             {
                 villains[i]->immune=1;
                 villains[i]->challenge_wins+=1;
