@@ -1597,7 +1597,10 @@ static void tribeChallenge(HvV* heroes[], HvV* villains[], int number_survivor_p
         // Code for heroes sitting out
         for(int i=0; i<number_survivor_per_tribe; i++)
         {
+			if(heroes[i]->getEliminated()==0)
+			{
 			cout << heroes[i]->getFirstName() << endl;
+			}
 		}
         for(int i=0; i<=numHeroes-numVillains; i++)
 				{
@@ -1613,9 +1616,12 @@ static void tribeChallenge(HvV* heroes[], HvV* villains[], int number_survivor_p
         // Code for villains sitting out
         for(int i=0; i<number_survivor_per_tribe; i++)
         {
+			if(villains[i]->getEliminated()==0)
+			{
 			cout << villains[i]->getFirstName()<< endl;
+			}
 		}
-        for(int i=0; i<numVillains-numHeroes; i++)
+        for(int i=0; i<=numVillains-numHeroes; i++)
         {
 				int sitting=0;
 				cin >> sitting;
@@ -3029,7 +3035,7 @@ void random_event_hero(HvV* heroes[], int choice)
 
 int main() 
 {
-	int days=16;
+	int days=0;
 	int replay=1;
 	 srand(time(0));
     const int number_survivors_per_tribe = 10;
@@ -3058,15 +3064,15 @@ switch(season)
 				HvV* heroes[number_survivors_per_tribe] = 
 				{
 						//name           tribe         strength, vote_id, elim allied, trust, immune, enemies, tribe_I, challenge wins, allies made, trust built, Idol
-        new HvV("#0 Sugar Kiper",  "Heroes",             13,        0, 0,0,        1,0,0,    30,    4,   0,        0, 0,           0,                  0,      0,        0),
+        new HvV("#0 Sugar Kiper",  "Heroes",             13,        0, 0,0,        0,0,0,    30,    4,   0,        0, 0,           0,                  0,      0,        0),
         new HvV("#1 Stephenie LaGrossa",  "Heroes",      15,        1, 0, 0,      0, 0, 0,  45,    4,   0,        0,   0,         0,                  0,      0,        0),
-        new HvV("#2 Cercie Fields",  "Heroes",           11,        2,  0, 0,     1, 0, 0,  50,    4,   0,        0 ,    0,       0,                  0,      0,        0),
+        new HvV("#2 Cercie Fields",  "Heroes",           11,        2,  0, 0,     0, 0, 0,  50,    4,   0,        0 ,    0,       0,                  0,      0,        0),
         new HvV("#3 Tom Westman",  "Heroes",             16,        3, 0,   0,    0, 0, 0,  40,    40,   0,        0,       0,     0,                  0,      0,        0),
-        new HvV("#4 James Clement",  "Heroes",           15000,        4,  0,   1,   0, 0, 0,  40,   40,   0,        0,  0,          0,                  0,      0,        0),
+        new HvV("#4 James Clement",  "Heroes",           15,        4,  0,   0,   0, 0, 0,  40,   40,   0,        0,  0,          0,                  0,      0,        0),
         new HvV("#5 J.T Thomas",  "Heroes",              16,        5,  0, 0,     0, 0, 0,  20,    40,   0,        0,   0,         0,                  0,      0,        0),
-        new HvV("#6 Amanda Kimmel",  "Heroes",           15,        6,  0, 0,     1, 0, 0,  29,    40,   0,        0,    0,        0,                  0,      0,        0),
+        new HvV("#6 Amanda Kimmel",  "Heroes",           15,        6,  0, 0,     0, 0, 0,  29,    40,   0,        0,    0,        0,                  0,      0,        0),
         new HvV("#7 Candice Woodcock",  "Heroes",        14,        7,  0, 0,     0, 0, 0,  50,    40,   0,        0,     0,       0,                  0,      0,        0),
-        new HvV("#8 Rupert Boneham",  "Heroes",          17,        8,  0, 0,     1, 0, 0,  20,    40,   0,        0,      0,      0,                  0,      0,        0),
+        new HvV("#8 Rupert Boneham",  "Heroes",          17,        8,  0, 0,     0, 0, 0,  20,    40,   0,        0,      0,      0,                  0,      0,        0),
         new HvV("#9 Colby Donaldson",  "Heroes",         15,        9,  0, 0,     0,  0, 0, 18,    40,   0,        0,       0,     0,                  0,      0,        0)
 				};
     
@@ -3082,15 +3088,15 @@ switch(season)
 				HvV* villains[number_survivors_per_tribe] = 
 				{
 							//name           tribe    strength, vote_id, elim, allied, trust, immune, enemies, tribe_I, challenge wins, allies made, trust built, Idol
-        new HvV("#10 Courtney Yates",  "Villains",    12,         10, 0,  0,   1,0, 0,    30,     0,   0,        0,      0,  0,              0,                0,         0),
+        new HvV("#10 Courtney Yates",  "Villains",    12,         10, 0,  0,   0,0, 0,    30,     0,   0,        0,      0,  0,              0,                0,         0),
         new HvV("#11 Russell Hantz",  "Villains",     15,         11, 0,   0,  0, 0, 0,   90,     0,   0,        0,      0,    0,            0,                0,         0),
-        new HvV("#12 Randy Bailey",  "Villains",      13,         12, 0,   0,  1, 0, 0,   43,     0,   0,        0,      0,      0,          0,                0,         0),
+        new HvV("#12 Randy Bailey",  "Villains",      13,         12, 0,   0,  0, 0, 0,   43,     0,   0,        0,      0,      0,          0,                0,         0),
         new HvV("#13 Tyson Apostol",  "Villains",     17,         13, 0,  0,   0, 0, 0,   50,     0,   0,        0,      0,   0,             0,                0,         0),
-        new HvV("#14 Boston Rob",  "Villains",        18,         14, 0,  0,   1, 0, 0,   55,     0,   0,        0,      0,   0,             0,                0,         0),
+        new HvV("#14 Boston Rob",  "Villains",        18,         14, 0,  0,   0, 0, 0,   55,     0,   0,        0,      0,   0,             0,                0,         0),
         new HvV("#15 Coach Wade",  "Villains",        14,         15, 0,  0,   0, 0, 0,   30,     0,   0,        0,      0,    0,            0,                0,         0),
-        new HvV("#16 Jerri Manthey",  "Villains",     15,         16, 0,  0,   1, 0, 0,   30,     0,   0,        0,      0,     0,           0,                0,         0),
+        new HvV("#16 Jerri Manthey",  "Villains",     15,         16, 0,  0,   0, 0, 0,   30,     0,   0,        0,      0,     0,           0,                0,         0),
         new HvV("#17 Sandra Diaz-Twine ",  "Villains",11,         17, 0,   0,  0, 0, 0,   70,     0,   0,        0,      0,    0,            0,                0,          0),
-        new HvV("#18 Parviti Shallow ",  "Villains",  16,         18, 0,   0,  1, 0, 0,   80,     0,   0,        0,      0,    0,            0,                0,         0),
+        new HvV("#18 Parviti Shallow ",  "Villains",  16,         18, 0,   0,  0, 0, 0,   80,     0,   0,        0,      0,    0,            0,                0,         0),
         new HvV("#19 Danielle DiLorenzo", "Villains", 16,         19, 0,  0,   0, 0, 0,   60,     0,   0,        0,      0,     0,           0,                0,         0)
 				};
 		
@@ -3112,7 +3118,7 @@ switch(season)
 					}
 	
 	//TRIBAL STAGE 
-    while(days<4)
+    while(days<20)
     {
 	
 	
@@ -3190,7 +3196,7 @@ HvV::IndvidualChallenge(heroes,villains,number_survivors_per_tribe);
 	
 	//MERGE BELOW
 	//This needs work ASHLEY!!!!!!!!!!!!!!!!
-	if (days>15)
+	if (days>20)
 	{
 		const int number_survivors_per_tribe = 9;
 
