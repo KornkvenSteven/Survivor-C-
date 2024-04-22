@@ -2947,12 +2947,13 @@ if(choice>9)
 		}
 	}
 	int user_vote;
-	do{
+
 	cin >> user_vote;
-	}while(villains[user_vote]->getEliminated()==1);
+	
 	user_vote=user_vote-10;
 	villains[user_vote]->setVotesAgainst(1);
 }
+
 	
 		for(int i=0; i<number_survivor_per_tribe; i++)
 		{
@@ -2970,7 +2971,7 @@ if(choice>9)
 			
 			int total_votes=0;
 		//NEUTRAL TOWARD PLAYER VOTE	
-		if(villains[i]->getAllied()!=1 || villains[i]->getAllied()!=1)
+		if(villains[i]->getAllied()!=2 || villains[i]->getAllied()!=1)
 			{
 				
 					do
@@ -2979,7 +2980,7 @@ if(choice>9)
 					}while(cpu_vote==i && villains[cpu_vote]->getEliminated()==1&& (villains[i]->getAllied()==1 && i==choice-10));
 			}
 		//ALLIES VOTE
-		if(villains[i]->getAllied()!=0 || villains[i]->getAllied()!=2)
+		if(villains[i]->getAllied()!=0 && villains[i]->getAllied()!=2 )
 			{
 			
 				//TRIBE MATES TURN ON YOU
@@ -3347,7 +3348,7 @@ switch(season)
         new HvV("#19 Danielle DiLorenzo", "Villains", 16,         19, 0,  0,   0, 0, 0,   0,     0,   0,        0,      0,     0,           0,                0,         0)
 				};
 					
-					//villains[0]->set_allied_made();
+					//villains[0]->set_allied_made(50);
 						for(int i=0; i<number_survivors_per_tribe; i++)
 						{
 							int newTricks=rand () % 100;
@@ -3393,7 +3394,7 @@ switch(season)
 				
 					int newTrust=villains[i]->getTrust();
 				
-					int blindside_chance=NewTricks-newTrust;
+					int blindside_chance=+NewTricks-newTrust;
 					
 					 blindside_result= rand() % blindside_chance;
 
