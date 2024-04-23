@@ -3003,11 +3003,11 @@ static void Heroes_Tribal_Council(HvV* heroes[], int number_survivor_per_tribe, 
 		{
 			cout << "This is a hidden immunity idol" << endl;
 			cout << "All votes for " << heroes[choice]->getFirstName() << " will not count" << endl;
-			heroes[choice-10]->setIdolPlayed(1);
+			heroes[choice]->setIdolPlayed(1);
 			int get_one;
 			cout << " " << endl;
-			int newIdol=heroes[choice-10]->getIdol()-1;
-			heroes[choice-10]->setIdol(newIdol);
+			int newIdol=heroes[choice]->getIdol()-1;
+			heroes[choice]->setIdol(newIdol);
 			cout << "Press 1" << endl;
 			IdolsFound=IdolsFound-1;
 			cin>>get_one;
@@ -3028,14 +3028,21 @@ static void Heroes_Tribal_Council(HvV* heroes[], int number_survivor_per_tribe, 
 			
 		}
 	}
-	cout << heroes[choice-10]->getFirstName() << " Voted: " << heroes[user_vote-10]->getFirstName() << endl;
+	if(heroes[user_vote]->getIdolPlayed()==1)
+	{
+			cout << heroes[choice]->getFirstName() << " Voted: " << heroes[user_vote]->getFirstName() << "----DOES NOT COUNT" << endl;
+	}
+	if(heroes[user_vote]->getIdolPlayed()==0)
+	{
+		cout << heroes[choice]->getFirstName() << " Voted: " << heroes[user_vote]->getFirstName() << endl;
+	}
 	}
 	
 	if(choice<=10)
 	{	
 	for (int i=0; i<number_survivor_per_tribe; i++)
 	{
-		if(heroes[i]->getIdol()>0)
+		if(heroes[i]->getIdol()>0 && heroes[i]->getPlayerCharacter()==0)
 		{
 			cout << "This is a hidden immunity idol" << endl;
 			cout << "All votes for " << heroes[i]->getFirstName() << " will not count" << endl;
@@ -3247,7 +3254,7 @@ if(choice>9)
 	}
 	for (int i=0; i<number_survivor_per_tribe; i++)
 	{
-		if(villains[i]->getIdol()>0)
+		if(villains[i]->getIdol()>0 && villains[i]->getPlayerCharacter()==0)
 		{
 			cout << "This is a hidden immunity idol" << endl;
 			cout << "All votes for " << villains[i]->getFirstName() << " will not count" << endl;
@@ -3258,7 +3265,15 @@ if(choice>9)
 			
 		}
 	}
-	cout << villains[choice-10]->getFirstName() << " Voted: " << villains[user_vote]->getFirstName() << endl;
+	if(villains[user_vote]->getIdolPlayed()==1)
+	{
+			cout << villains[choice-10]->getFirstName() << " Voted: " << villains[user_vote]->getFirstName() << "----DOES NOT COUNT" << endl;
+	}
+	if(villains[user_vote]->getIdolPlayed()==0)
+	{
+		cout << villains[choice-10]->getFirstName() << " Voted: " << villains[user_vote]->getFirstName() << endl;
+	}
+
 	
 }
 			
@@ -3956,6 +3971,7 @@ switch(season)
 					cout << "Both teams going to Tribal Concil and will vote a tribemate off" << endl;
 					cout << "Press 1" << endl;
 					int press_enter;
+					cout << "Press 1" << endl;
 					cin >> press_enter;
 					HvV::Heroes_Tribal_Council( heroes,  number_survivors_per_tribe,  choice,  blindside_result, IdolsFound);
 					cout << "Press 1" << endl;
